@@ -68,7 +68,7 @@ def get_manu(soup):
 if __name__ == '__main__':
     d = {"product_url": [], "title": [],
          "price": [], "rating": [], "Stars": []}
-    for i in range(1, 2):
+    for i in range(1, 21):
         URL = "https://www.flipkart.com/search?q=bags&as=on&as-show=on&otracker=AS_Query_HistoryAutoSuggest_5_0_na_na_na&otracker1=AS_Query_HistoryAutoSuggest_5_0_na_na_na&as-pos=5&as-type=HISTORY&suggestionId=bags&requestId=cf867156-cac7-4bf4-b105-705fe310e783&page=" + \
             str(i)
         HEADERS = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
