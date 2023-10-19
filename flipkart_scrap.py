@@ -43,20 +43,10 @@ def get_rating(soup):
 
     return title_rating
 
-# def get_review(soup):
-#     try:
-#         review = soup.find("span", attrs={"class": "_2_R_DZ"})
-#         title_review = review.text
 
-#     except:
-#         title_review = ""
-
-#     return title_review
-
-
-def get_manu(soup):
+def get_Stars(soup):
     try:
-        print("reading")
+        # print("reading") debugginf purpose
         manuf = soup.find("div", attrs={"class": "_3LWZlK _138NNC"})
         product_manu = manuf.text+" stars"
         print(manuf)
@@ -75,7 +65,7 @@ if __name__ == '__main__':
                     'Accept-Language': 'en-US, en;q=0.5'})
         webpage = requests.get(URL, headers=HEADERS)
         soup = BeautifulSoup(webpage.content, "html.parser")
-        # print("Page "+str(i)+" is goin on")
+
         links = soup.find_all("a", attrs={
             'class': '_2UzuFa'})
         links_list = []
@@ -85,7 +75,7 @@ if __name__ == '__main__':
 
         for link in links_list:
             p_link = "https://www.flipkart.com" + link
-            # print(p_link)
+            # print(p_link) for debugging purpose
             new_webpage = requests.get(
                 p_link, headers=HEADERS)
 
@@ -97,7 +87,7 @@ if __name__ == '__main__':
             d['price'].append(get_price(new_soup))
             d['rating'].append(get_rating(new_soup))
             # d['review'].append(get_review(new_soup))
-            d['Stars'].append(get_manu(new_soup))
+            d['Stars'].append(get_Stars(new_soup))
         flipkart_df = pd.DataFrame.from_dict(d)
         flipkart_df['title'].replace('', np.nan, inplace=True)
         flipkart_df = flipkart_df.dropna(subset=['title'])
